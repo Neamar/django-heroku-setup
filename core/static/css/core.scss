@@ -1,0 +1,9 @@
+body {
+  background: lightblue;
+}
+
+#logo {
+  background: url(static('img/logo.svg')); /* use static() to generate a cacheable URL in non-DEBUG. Don't forget to run compress with DEBUG=False */
+  background-repeat: no-repeat;
+  padding-left: 50px;
+}

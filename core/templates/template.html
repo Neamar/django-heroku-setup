@@ -1,0 +1,36 @@
+{% load compress %}
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% block title%}{% endblock %}</title>
+  <meta name="description" content="{% block description%}{% endblock %}">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  {% compress css file site %}
+  <link type="text/x-scss" href="{% static "css/core.scss" %}" rel="stylesheet">
+  {% endcompress %}
+</head>
+
+<body>
+  {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+  </ul>
+  {% endif %}
+
+  {% block content %}
+  {% endblock %}
+
+  {% block js %}
+  {% endblock %}
+</body>
+</html>
