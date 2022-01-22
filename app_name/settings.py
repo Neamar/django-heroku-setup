@@ -147,8 +147,10 @@ STATICFILES_FINDERS = [
 # https://github.com/django-compressor/django-compressor/issues/486#issuecomment-341791105
 INSTALLED_APPS += ("compressor",)
 COMPRESS_PRECOMPILERS = (("text/x-scss", "django_libsass.SassCompiler"),)
+# Do not append query string for cache busting. Instead, you should use static() in SCSS to generate the proper forever-cacheable URL
+COMPRESS_CSS_HASHING_METHOD = None
 # time non-hashed static files should remain cached (in seconds).
-# Resources loaded properly with {% static %} will be cached forever
+# Resources loaded properly with {% static %} (or the static() SCSS function) will be cached forever
 WHITENOISE_MAX_AGE = 3 * 60 * 60
 print(DEBUG)
 if not DEBUG or os.getenv("DESIGN_OFFLINE", "False") == "True":
